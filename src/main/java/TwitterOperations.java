@@ -15,7 +15,6 @@ import java.util.Date;
 
 public class TwitterOperations {
     public static void main(String[] args) {
-        PostTweet postTweet = new PostTweet();
         ParseTimeLine parseTimeline = new ParseTimeLine();
         SearchByExpression searchByExpression = new SearchByExpression();
         Stream stream = new Stream();
@@ -25,6 +24,7 @@ public class TwitterOperations {
         TwitterFactory twitterFactory = new TwitterFactory(config);
         TwitterStream twitterStream = new TwitterStreamFactory(config).getInstance();
         TwitterOperations twitterOperations = new TwitterOperations();
+        PostTweet postTweet = new PostTweet("tweet", twitterFactory);
 
         int hour = Integer.parseInt(args[0]);
         int minute = Integer.parseInt(args[1]);
@@ -42,7 +42,7 @@ public class TwitterOperations {
         boolean useFilter = Boolean.parseBoolean(args[12]);
 
         // Post tweet
-        postTweet.createTweet("tweet", twitterFactory);
+        postTweet.post(postTweet.createTweet());
         // Post timed tweet
         new TimedTweet(date, twitterFactory);
         // Get timeline of a user

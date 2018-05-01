@@ -12,9 +12,17 @@ import java.io.IOException;
 
 public class PostTweet {
 
-    public Status createTweet(String tweetPath, TwitterFactory tf){
-        Twitter twitter = tf.getInstance();
-        Status status = null;
+    private String tweetPath;
+    private TwitterFactory twitterFactory;
+    private Twitter twitter;
+
+    public PostTweet(String tweetPath, TwitterFactory twitterFactory) {
+        this.tweetPath = tweetPath;
+        this.twitterFactory = twitterFactory;
+        this.twitter = twitterFactory.getInstance();
+    }
+
+    public StringBuilder createTweet(){
         StringBuilder tweet = new StringBuilder();
         BufferedReader reader = null;
         try {
@@ -34,11 +42,14 @@ public class PostTweet {
                 e.printStackTrace();
             }
         }
+        return tweet;
+    }
+
+    public void post(StringBuilder tweet) {
         try {
-            status = twitter.updateStatus(tweet.toString());
+            twitter.updateStatus(tweet.toString());
         } catch (TwitterException e) {
             e.printStackTrace();
         }
-        return status;
     }
 }

@@ -1,6 +1,5 @@
 package operations.posting;
 
-import operations.posting.PostTweet;
 import twitter4j.TwitterFactory;
 
 import java.util.Date;
@@ -9,7 +8,7 @@ import java.util.TimerTask;
 
 public class TimedTweet {
 
-    Timer timer;
+    private Timer timer;
 
     public TimedTweet(Date time, TwitterFactory tf) {
         timer = new Timer();
@@ -17,12 +16,12 @@ public class TimedTweet {
     }
     class SendTimedTweet extends TimerTask {
         TwitterFactory tf;
-        public SendTimedTweet(TwitterFactory tf) {
+        SendTimedTweet(TwitterFactory tf) {
             this.tf = tf;
         }
         public void run() {
-            PostTweet postTweet = new PostTweet();
-            postTweet.createTweet("tweet", tf);
+            PostTweet postTweet = new PostTweet("tweet", tf);
+            postTweet.post(postTweet.createTweet());
             System.out.println("Tweet sent.");
             timer.cancel();
         }
