@@ -8,10 +8,10 @@ import twitter4j.TwitterFactory;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.io.File;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class TwitterTests {
 
@@ -29,37 +29,52 @@ public class TwitterTests {
     private Pattern pattern2 = Pattern.compile(regex2);
 
     @Test
+    public void tweetExistsTest() {
+        assertTrue("Tweet file doesn't exist.", new File(ClassLoader.getSystemClassLoader().getResource("tweet").getPath()).exists());
+    }
+
+    @Test
+    public void listExistsTest() {
+        assertTrue("Spam list doesn't exist.", new File("sex.txt").exists());
+    }
+
+    @Test
+    public void credentialsExistsTest() {
+        assertTrue("Credentials file doesn't exist.", new File(ClassLoader.getSystemClassLoader().getResource("credentials.json").getPath()).exists());
+    }
+
+    @Test
     public void tweetReadSuccessTest() {
-        assertNotEquals(null, postTweet.createTweet());
+        assertNotNull(postTweet.createTweet());
     }
 
     @Test
     public void listReadSuccessTest() {
-        assertNotEquals(null, parseList.filteredWords());
+        assertNotNull(parseList.filteredWords());
     }
 
     @Test
     public void credentialsReadSuccessTest() {
-        assertNotEquals(null, parseCredentials.read());
+        assertNotNull(parseCredentials.read());
     }
 
     @Test
     public void consumerKeyTest() {
-        assertEquals(true, pattern1.matcher(credentials.getConsumerKey()).matches());
+        assertTrue(pattern1.matcher(credentials.getConsumerKey()).matches());
     }
 
     @Test
     public void consumerSecretTest() {
-        assertEquals(true, pattern1.matcher(credentials.getConsumerSecret()).matches());
+        assertTrue(pattern1.matcher(credentials.getConsumerSecret()).matches());
     }
 
     @Test
     public void accessTokenTest() {
-        assertEquals(true, pattern2.matcher(credentials.getAccessToken()).matches());
+        assertTrue(pattern2.matcher(credentials.getAccessToken()).matches());
     }
 
     @Test
     public void accessTokenSecretTest() {
-        assertEquals(true, pattern1.matcher(credentials.getAccessTokenSecret()).matches());
+        assertTrue(pattern1.matcher(credentials.getAccessTokenSecret()).matches());
     }
 }
