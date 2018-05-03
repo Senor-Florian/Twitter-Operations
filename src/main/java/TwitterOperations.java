@@ -43,13 +43,13 @@ public class TwitterOperations {
         boolean uploadPictures = Boolean.parseBoolean(args[13]);
 
         // Post tweet
-        //postTweet.post(postTweet.createTweet());
+        postTweet.post(postTweet.createTweet());
         // Post timed tweet
-        //new TimedTweet(date, twitterFactory);
+        new TimedTweet(date, twitterFactory);
         // Get timeline of a user
-        //parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1);
+        parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1);
         // Search for an expression
-        //searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
+        searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
         // Get a stream of tweets
         stream.stream(twitterStream, filterWord, filterLanguage, putResultsInDB2, useFilter, uploadPictures);
     }
