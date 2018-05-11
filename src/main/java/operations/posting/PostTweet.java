@@ -12,16 +12,15 @@ import java.io.IOException;
 
 public class PostTweet {
 
-    private String tweetPath;
     private TwitterFactory twitterFactory;
     private Twitter twitter;
 
-    public PostTweet(String tweetPath, TwitterFactory twitterFactory) {
-        this.tweetPath = tweetPath;
+    public PostTweet(TwitterFactory twitterFactory) {
         this.twitterFactory = twitterFactory;
         this.twitter = twitterFactory.getInstance();
     }
 
+    /*
     public StringBuilder createTweet(){
         StringBuilder tweet = new StringBuilder();
         BufferedReader reader = null;
@@ -44,10 +43,10 @@ public class PostTweet {
         }
         return tweet;
     }
-
-    public void post(StringBuilder tweet) {
+    */
+    public void post(String tweetBody) {
         try {
-            twitter.updateStatus(tweet.toString());
+            twitter.updateStatus(tweetBody);
         } catch (TwitterException e) {
             e.printStackTrace();
         }

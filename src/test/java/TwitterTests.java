@@ -22,7 +22,7 @@ public class TwitterTests {
     private ParseList parseList = new ParseList();
     private ParseCredentials parseCredentials = new ParseCredentials();
     private Credentials credentials = parseCredentials.read();
-    private PostTweet postTweet = new PostTweet("tweet", twitterFactory);
+    private PostTweet postTweet = new PostTweet(twitterFactory);
     private String regex1 = "^[a-zA-Z0-9]*$";
     private String regex2 = "^[a-zA-Z0-9-]*$";
     private Pattern pattern1 = Pattern.compile(regex1);
@@ -41,11 +41,6 @@ public class TwitterTests {
     @Test
     public void credentialsExistsTest() {
         assertTrue("Credentials file doesn't exist.", new File(ClassLoader.getSystemClassLoader().getResource("credentials.json").getPath()).exists());
-    }
-
-    @Test
-    public void tweetReadSuccessTest() {
-        assertNotNull(postTweet.createTweet());
     }
 
     @Test

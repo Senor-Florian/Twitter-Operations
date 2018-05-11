@@ -24,7 +24,7 @@ public class TwitterOperations {
         TwitterFactory twitterFactory = new TwitterFactory(config);
         TwitterStream twitterStream = new TwitterStreamFactory(config).getInstance();
         TwitterOperations twitterOperations = new TwitterOperations();
-        PostTweet postTweet = new PostTweet("tweet", twitterFactory);
+        PostTweet postTweet = new PostTweet(twitterFactory);
 
         int hour = Integer.parseInt(args[0]);
         int minute = Integer.parseInt(args[1]);
@@ -43,11 +43,11 @@ public class TwitterOperations {
         boolean uploadPictures = Boolean.parseBoolean(args[13]);
 
         // Post tweet
-        postTweet.post(postTweet.createTweet());
+        postTweet.post("asd");
         // Post timed tweet
-        new TimedTweet(date, twitterFactory);
+        // new TimedTweet(date, twitterFactory);
         // Get timeline of a user
-        parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1);
+        // parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1);
         // Search for an expression
         searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
         // Get a stream of tweets
