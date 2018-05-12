@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Get timeline</title>
+</head>
+<body>
+<h1>Get timeline</h1>
+<form action="#" th:action="@{/twitter/timeline}" th:object="${timeLine}" method="post">
+    <label>Twitter handle:</label>
+    <input type="text" th:field="*{handle}" />
+    <br/>
+    <label>Page:</label>
+    <input type="text" th:field="*{page}" />
+    <br/>
+    <label>Number of tweets:</label>
+    <input type="text" th:field="*{count}" />
+    <br/>
+    <label>Put results in database:</label>
+    <input type="checkbox" th:field="*{putInDB}" />
+    <br/>
+    <input type="submit" value="Get timeline" />
+</form>
+<input type="button" value="Return" onclick="location.href='/twitter/'"/>
+</body>
+</html>

@@ -12,7 +12,7 @@ public class ParseCredentials {
         ClassLoader classLoader = getClass().getClassLoader();
         byte[] db = new byte[0];
         try {
-            db = Files.readAllBytes(Paths.get(classLoader.getResource("credentials.json").getPath()));
+            db = Files.readAllBytes(Paths.get("credentials.json"));
         } catch (IOException e) {
             e.printStackTrace();
         }

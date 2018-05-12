@@ -11,7 +11,6 @@ public class SearchByExpression {
         query.setCount(count);
         QueryResult queryResult = null;
         TweetsToDB tweetsToDB = new TweetsToDB();
-
         try {
             queryResult = twitter.search(query);
         } catch (TwitterException e) {

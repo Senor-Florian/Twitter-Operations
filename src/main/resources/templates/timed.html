@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Post timed tweet</title>
+</head>
+<body>
+<h1>Post timed tweet</h1>
+<form action="#" th:action="@{/twitter/timed}" th:object="${timedTweet}" method="post">
+    <label>Tweet:</label>
+    <input type="text" th:field="*{text}" />
+    <br/>
+    <label>Hours:</label>
+    <input type="text" th:field="*{hour}" />
+    <br/>
+    <label>Minutes:</label>
+    <input type="text" th:field="*{minute}" />
+    <br/>
+    <label>Seconds:</label>
+    <input type="text" th:field="*{second}" />
+    <br/>
+    <input type="submit" value="Post timed tweet" />
+</form>
+<input type="button" value="Return" onclick="location.href='/twitter/'"/>
+</body>
+</html>

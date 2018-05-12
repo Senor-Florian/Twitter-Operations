@@ -3,7 +3,7 @@ import operations.get_tweets.ParseTimeLine;
 import operations.get_tweets.SearchByExpression;
 import operations.get_tweets.Stream;
 import operations.posting.PostTweet;
-import operations.posting.TimedTweet;
+import operations.posting.PostTimedTweet;
 import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
@@ -43,15 +43,15 @@ public class TwitterOperations {
         boolean uploadPictures = Boolean.parseBoolean(args[13]);
 
         // Post tweet
-        postTweet.post("asd");
+        //postTweet.post("hadada");
         // Post timed tweet
-        // new TimedTweet(date, twitterFactory);
-        // Get timeline of a user
-        // parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1);
+        //new PostTimedTweet(date, twitterFactory, "hadada");
+        //Get timeline of a user
+        parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1, true);
         // Search for an expression
-        searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
+        //searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
         // Get a stream of tweets
-        stream.stream(twitterStream, filterWord, filterLanguage, putResultsInDB2, useFilter, uploadPictures);
+        //stream.stream(twitterStream, filterWord, filterLanguage, putResultsInDB2, useFilter, uploadPictures);
     }
 
     public Date setTime(int hour, int minute, int second) {

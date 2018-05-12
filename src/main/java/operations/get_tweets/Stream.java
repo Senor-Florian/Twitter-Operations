@@ -21,17 +21,19 @@ public class Stream {
         twitterStream.addListener(new StatusListener() {
             TweetsToDB tweetsToDB = new TweetsToDB();
             int tweetNumber = 1;
-            int picCount = 1;
+            //int picCount = 1;
             @Override
             public void onStatus(Status status) {
                 if(parseList.stringContainsItemFromList(status.getText(), dirtyWords)) {
                     System.out.println("SPAM");
                 } else {
-                    for(MediaEntity mediaEntity : status.getMediaEntities()) {
-                        if (mediaEntity.getType().equals("photo")) {
-                            downloadPics.download(mediaEntity.getMediaURL());
-                            googleDrive.executeOperations();
-                            picCount++;
+                    if(uploadPictures) {
+                        for(MediaEntity mediaEntity : status.getMediaEntities()) {
+                            if (mediaEntity.getType().equals("photo")) {
+                                downloadPics.download(mediaEntity.getMediaURL());
+                                googleDrive.executeOperations();
+                                //picCount++;
+                            }
                         }
                     }
                     System.out.println(tweetNumber + " @" + status.getUser().getScreenName() + " - " + status.getText());
