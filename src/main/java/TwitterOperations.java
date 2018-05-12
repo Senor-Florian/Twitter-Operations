@@ -1,9 +1,8 @@
 import credentials.*;
 import operations.get_tweets.ParseTimeLine;
 import operations.get_tweets.SearchByExpression;
-import operations.get_tweets.Stream;
+import operations.get_tweets.GetStream;
 import operations.posting.PostTweet;
-import operations.posting.PostTimedTweet;
 import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
@@ -17,7 +16,7 @@ public class TwitterOperations {
     public static void main(String[] args) {
         ParseTimeLine parseTimeline = new ParseTimeLine();
         SearchByExpression searchByExpression = new SearchByExpression();
-        Stream stream = new Stream();
+        GetStream stream = new GetStream();
         ConfigMaker configMaker = new ConfigMaker();
         ConfigurationBuilder configurationBuilder = configMaker.buildConfig();
         Configuration config = configurationBuilder.build();
@@ -47,11 +46,11 @@ public class TwitterOperations {
         // Post timed tweet
         //new PostTimedTweet(date, twitterFactory, "hadada");
         //Get timeline of a user
-        parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1, true);
+        //parseTimeline.getTimeLine(twitterUser, twitterFactory, pageNumber, count1, true);
         // Search for an expression
         //searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
         // Get a stream of tweets
-        //stream.stream(twitterStream, filterWord, filterLanguage, putResultsInDB2, useFilter, uploadPictures);
+        stream.stream(twitterStream, filterWord, filterLanguage, putResultsInDB2, useFilter, uploadPictures, 1);
     }
 
     public Date setTime(int hour, int minute, int second) {

@@ -11,37 +11,40 @@ import org.apache.commons.io.FileUtils;
 
 import java.util.ArrayList;
 
-public class Stream {
+public class GetStream {
 
-    public void stream(TwitterStream twitterStream, String filterWord, String language, boolean insertIntoDB, boolean useFiltering, boolean uploadPictures) {
+    public void stream(TwitterStream twitterStream, String filterWord, String language,
+                       boolean insertIntoDB, boolean useFiltering, boolean uploadPictures,
+                       int streamLength) {
         ParseList parseList = new ParseList();
         ArrayList<String> dirtyWords = parseList.filteredWords();
         DownloadPics downloadPics = new DownloadPics();
         GoogleDrive googleDrive = new GoogleDrive();
+        long startTime = System.currentTimeMillis();
         twitterStream.addListener(new StatusListener() {
             TweetsToDB tweetsToDB = new TweetsToDB();
             int tweetNumber = 1;
-            //int picCount = 1;
             @Override
             public void onStatus(Status status) {
-                if(parseList.stringContainsItemFromList(status.getText(), dirtyWords)) {
-                    System.out.println("SPAM");
-                } else {
-                    if(uploadPictures) {
-                        for(MediaEntity mediaEntity : status.getMediaEntities()) {
-                            if (mediaEntity.getType().equals("photo")) {
-                                downloadPics.download(mediaEntity.getMediaURL());
-                                googleDrive.executeOperations();
-                                //picCount++;
+                if(System.currentTimeMillis() < startTime + streamLength * 60000) {
+                    if(parseList.stringContainsItemFromList(status.getText(), dirtyWords)) {
+                        System.out.println("SPAM");
+                    } else {
+                        if(uploadPictures) {
+                            for(MediaEntity mediaEntity : status.getMediaEntities()) {
+                                if (mediaEntity.getType().equals("photo")) {
+                                    downloadPics.download(mediaEntity.getMediaURL());
+                                    googleDrive.executeOperations();
+                                }
                             }
                         }
+                        System.out.println(tweetNumber + " @" + status.getUser().getScreenName() + " - " + status.getText());
+                        if(insertIntoDB) {
+                            tweetsToDB.storeTweets(status);
+                        }
                     }
-                    System.out.println(tweetNumber + " @" + status.getUser().getScreenName() + " - " + status.getText());
-                    if(insertIntoDB) {
-                        tweetsToDB.storeTweets(status);
-                    }
+                    tweetNumber++;
                 }
-                tweetNumber++;
             }
 
             @Override
@@ -69,7 +72,6 @@ public class Stream {
                 ex.printStackTrace();
             }
         });
-
         if(useFiltering) {
             FilterQuery tweetFilterQuery = new FilterQuery();
             tweetFilterQuery.track(filterWord);

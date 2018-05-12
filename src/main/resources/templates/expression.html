@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Search for expression</title>
+</head>
+<body>
+<h1>Search for expression</h1>
+<form action="#" th:action="@{/twitter/expression}" th:object="${expression}" method="post">
+    <label>Expression:</label>
+    <input type="text" th:field="*{expression}" />
+    <br/>
+    <label>Number of tweets:</label>
+    <input type="text" th:field="*{count}" />
+    <br/>
+    <label>Put results in database:</label>
+    <input type="checkbox" th:field="*{putInDB}" />
+    <br/>
+    <input type="submit" value="Search" />
+</form>
+<input type="button" value="Return" onclick="location.href='/twitter/'"/>
+</body>
+</html>

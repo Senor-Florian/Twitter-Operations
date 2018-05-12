@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Get twitter stream</title>
+</head>
+<body>
+<h1>Get twitter stream</h1>
+<form action="#" th:action="@{/twitter/stream}" th:object="${stream}" method="post">
+    <label>Filter by expression:</label>
+    <input type="text" th:field="*{filterWord}" />
+    <br/>
+    <label>Filter by language:</label>
+    <input type="text" th:field="*{language}" />
+    <br/>
+    <label>Length of streaming in minutes:</label>
+    <input type="text" th:field="*{streamLength}" />
+    <br/>
+    <label>Put results in database:</label>
+    <input type="checkbox" th:field="*{putInDB}" />
+    <br/>
+    <label>Use filtering:</label>
+    <input type="checkbox" th:field="*{useFiltering}" />
+    <br/>
+    <label>Upload picture to Google Drive:</label>
+    <input type="checkbox" th:field="*{uploadPictures}" />
+    <br/>
+    <input type="submit" value="Get stream" />
+</form>
+<input type="button" value="Return" onclick="location.href='/twitter/'"/>
+</body>
+</html>
