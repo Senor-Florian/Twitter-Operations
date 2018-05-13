@@ -50,7 +50,7 @@ public class TwitterOperations {
         // Search for an expression
         //searchByExpression.search(expression, twitterFactory, count2, putResultsInDB1);
         // Get a stream of tweets
-        stream.stream(twitterStream, filterWord, filterLanguage, putResultsInDB2, useFilter, uploadPictures, 1);
+        stream.stream(twitterStream, "", "en", false, false, false, 1);
     }
 
     public Date setTime(int hour, int minute, int second) {

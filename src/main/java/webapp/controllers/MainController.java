@@ -30,7 +30,6 @@ public class MainController {
     private ParseTimeLine parseTimeline;
     private SearchByExpression searchByExpression;
     private TwitterStream twitterStream;
-    private GetStream getStream;
 
     public MainController() {
         this.configMaker = new ConfigMaker();
@@ -41,7 +40,6 @@ public class MainController {
         this.parseTimeline = new ParseTimeLine();
         this.searchByExpression = new SearchByExpression();
         this.twitterStream = new TwitterStreamFactory(config).getInstance();
-        this.getStream = new GetStream();
     }
 
     @GetMapping(path = "/")
@@ -105,6 +103,7 @@ public class MainController {
 
     @PostMapping(path="/stream")
     public String postExpression(@ModelAttribute Stream stream) {
+        GetStream getStream = new GetStream();
         getStream.stream(twitterStream, stream.getFilterWord(), stream.getLanguage(),
                 stream.isPutInDB(), stream.isUseFiltering(), stream.isUploadPictures(),
                 stream.getStreamLength());

@@ -20,31 +20,28 @@ public class GetStream {
         ArrayList<String> dirtyWords = parseList.filteredWords();
         DownloadPics downloadPics = new DownloadPics();
         GoogleDrive googleDrive = new GoogleDrive();
-        long startTime = System.currentTimeMillis();
-        twitterStream.addListener(new StatusListener() {
-            TweetsToDB tweetsToDB = new TweetsToDB();
-            int tweetNumber = 1;
+        TweetsToDB tweetsToDB = new TweetsToDB();
+        class StatusListener implements twitter4j.StatusListener {
+            private int tweetNumber = 1;
             @Override
             public void onStatus(Status status) {
-                if(System.currentTimeMillis() < startTime + streamLength * 60000) {
-                    if(parseList.stringContainsItemFromList(status.getText(), dirtyWords)) {
-                        System.out.println("SPAM");
-                    } else {
-                        if(uploadPictures) {
-                            for(MediaEntity mediaEntity : status.getMediaEntities()) {
-                                if (mediaEntity.getType().equals("photo")) {
-                                    downloadPics.download(mediaEntity.getMediaURL());
-                                    googleDrive.executeOperations();
-                                }
+                if (parseList.stringContainsItemFromList(status.getText(), dirtyWords)) {
+                    System.out.println("SPAM");
+                } else {
+                    if (uploadPictures) {
+                        for (MediaEntity mediaEntity : status.getMediaEntities()) {
+                            if (mediaEntity.getType().equals("photo")) {
+                                downloadPics.download(mediaEntity.getMediaURL());
+                                googleDrive.executeOperations();
                             }
                         }
-                        System.out.println(tweetNumber + " @" + status.getUser().getScreenName() + " - " + status.getText());
-                        if(insertIntoDB) {
-                            tweetsToDB.storeTweets(status);
-                        }
                     }
-                    tweetNumber++;
+                    System.out.println(tweetNumber + " @" + status.getUser().getScreenName() + " - " + status.getText());
+                    if (insertIntoDB) {
+                        tweetsToDB.storeTweets(status);
+                    }
                 }
+                tweetNumber++;
             }
 
             @Override
@@ -71,14 +68,25 @@ public class GetStream {
             public void onException(Exception ex) {
                 ex.printStackTrace();
             }
-        });
+        };
+
+        StatusListener statusListener = new StatusListener();
+        twitterStream.addListener(statusListener);
+        long startTime = System.currentTimeMillis();
+
         if(useFiltering) {
             FilterQuery tweetFilterQuery = new FilterQuery();
             tweetFilterQuery.track(filterWord);
             tweetFilterQuery.language(language);
             twitterStream.filter(tweetFilterQuery);
+            while(System.currentTimeMillis() < startTime + streamLength * 60000){}
+            twitterStream.removeListener(statusListener);
+            twitterStream.shutdown();
         } else {
             twitterStream.sample(language);
+            while(System.currentTimeMillis() < startTime + streamLength * 60000){}
+            twitterStream.removeListener(statusListener);
+            twitterStream.shutdown();
         }
     }
 }
