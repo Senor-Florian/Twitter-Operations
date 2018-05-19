@@ -6,6 +6,7 @@ public class TimeLine {
     private int page;
     private int count;
     private boolean putInDB;
+    private boolean getAllTweets;
 
     public String getHandle() {
         return handle;
@@ -37,5 +38,13 @@ public class TimeLine {
 
     public void setPutInDB(boolean putInDB) {
         this.putInDB = putInDB;
+    }
+
+    public boolean isGetAllTweets() {
+        return getAllTweets;
+    }
+
+    public void setGetAllTweets(boolean getAllTweets) {
+        this.getAllTweets = getAllTweets;
     }
 }

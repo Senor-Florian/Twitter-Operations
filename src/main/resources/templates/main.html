@@ -2,16 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
     <title>Twitter Operations</title>
 </head>
 <body>
-<h1>Twitter Operations</h1>
-<ul>
-    <li><input type="button" value="Post tweet" onclick="location.href='/twitter/tweet'"/></li>
-    <li><input type="button" value="Post timed tweet" onclick="location.href='/twitter/timed'"/></li>
-    <li><input type="button" value="Get timeline" onclick="location.href='/twitter/timeline'"/></li>
-    <li><input type="button" value="Search for expression" onclick="location.href='/twitter/expression'"/></li>
-    <li><input type="button" value="Get stream" onclick="location.href='/twitter/stream'"/></li>
-</ul>
+    <div class="navbar">
+        <h1>Twitter Operations</h1>
+    </div>
+    <div class="jumbotron">
+        <ul>
+            <li><button type="button" class="btn btn-primary" onclick="location.href='/twitter/tweet'">Post tweet</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="location.href='/twitter/timed'">Post timed tweet</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="location.href='/twitter/timeline'">Get timeline</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="location.href='/twitter/expression'">Search for expression</button></li>
+            <li><button type="button" class="btn btn-primary" onclick="location.href='/twitter/stream'">Get stream</button></li>
+        </ul>
+    </div>
+    <div class="footer">
+        <p>Gergely Flórián Papp, 2018.</p>
+    </div>
 </body>
 </html>

@@ -5,6 +5,7 @@ public class Expression {
     private String expression;
     private int count;
     private boolean putInDB;
+    private boolean getAllTweets;
 
     public String getExpression() {
         return expression;
@@ -28,5 +29,13 @@ public class Expression {
 
     public void setPutInDB(boolean putInDB) {
         this.putInDB = putInDB;
+    }
+
+    public boolean isGetAllTweets() {
+        return getAllTweets;
+    }
+
+    public void setGetAllTweets(boolean getAllTweets) {
+        this.getAllTweets = getAllTweets;
     }
 }

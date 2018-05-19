@@ -2,25 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
     <title>Post timed tweet</title>
 </head>
 <body>
-<h1>Post timed tweet</h1>
-<form action="#" th:action="@{/twitter/timed}" th:object="${timedTweet}" method="post">
-    <label>Tweet:</label>
-    <input type="text" th:field="*{text}" />
-    <br/>
-    <label>Hours:</label>
-    <input type="text" th:field="*{hour}" />
-    <br/>
-    <label>Minutes:</label>
-    <input type="text" th:field="*{minute}" />
-    <br/>
-    <label>Seconds:</label>
-    <input type="text" th:field="*{second}" />
-    <br/>
-    <input type="submit" value="Post timed tweet" />
-</form>
-<input type="button" value="Return" onclick="location.href='/twitter/'"/>
+    <div class="navbar">
+        <h1>Twitter Operations</h1>
+    </div>
+    <div class="jumbotron">
+        <form action="#" th:action="@{/twitter/timed}" th:object="${timedTweet}" method="post">
+            <h3>Post timed tweet</h3>
+            <div class="form-group">
+                <label for="tweetpost">Tweet</label>
+                <input type="text" th:field="*{text}" class="form-control" id="tweetpost" placeholder="Enter tweet text">
+            </div>
+            <div class="form-group">
+                <label for="hour">Hours</label>
+                <input type="text" th:field="*{hour}" class="form-control" id="hour" placeholder="Enter hours">
+            </div>
+            <div class="form-group">
+                <label for="minute">Minutes</label>
+                <input type="text" th:field="*{minute}" class="form-control" id="minute" placeholder="Enter minutes">
+            </div>
+            <div class="form-group">
+                <label for="second">Seconds</label>
+                <input type="text" th:field="*{second}" class="form-control" id="second" placeholder="Enter seconds">
+            </div>
+            <span>
+                <button type="submit" class="btn btn-primary">Post timed tweet</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/twitter/'">Return</button>
+            </span>
+        </form>
+    </div>
+    <div class="footer">
+        <p>Gergely Flórián Papp, 2018.</p>
+    </div>
 </body>
 </html>

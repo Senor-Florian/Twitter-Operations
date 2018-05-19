@@ -1,0 +1,44 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: royalblue;
+}
+
+.navbar {
+    padding-left: 30px;
+}
+
+h1 {
+    font-size: 50px;
+    color: white;
+}
+
+ul {
+  margin-left: 100px;
+  list-style-type: none;
+}
+
+li{
+  margin: 5px 0;
+}
+
+form {
+    margin-left: 100px;
+    width: 500px;
+}
+
+.footer {
+    padding-left: 30px;
+}
+
+p {
+    font-size: 20px;
+    color: white;
+}
+
+.jumbotron {
+    background-color: whitesmoke;
+}
+

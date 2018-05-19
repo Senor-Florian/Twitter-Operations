@@ -79,7 +79,8 @@ public class MainController {
 
     @PostMapping(path="/timeline")
     public String postTimeline(@ModelAttribute TimeLine timeLine) {
-        parseTimeline.getTimeLine(timeLine.getHandle(), twitterFactory, timeLine.getPage(), timeLine.getCount(), timeLine.isPutInDB());
+        parseTimeline.getTimeLine(timeLine.getHandle(), twitterFactory, timeLine.getPage(), timeLine.getCount(),
+                timeLine.isPutInDB(), timeLine.isGetAllTweets());
         return "timeline";
     }
 
@@ -91,7 +92,8 @@ public class MainController {
 
     @PostMapping(path="/expression")
     public String postExpression(@ModelAttribute Expression expression) {
-        searchByExpression.search(expression.getExpression(), twitterFactory, expression.getCount(), expression.isPutInDB());
+        searchByExpression.search(expression.getExpression(), twitterFactory, expression.getCount(),
+                expression.isPutInDB());
         return "expression";
     }
 

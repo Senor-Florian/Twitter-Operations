@@ -2,16 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" type="text/css">
     <title>Post tweet</title>
 </head>
 <body>
-    <h1>Post tweet</h1>
-    <form action="#" th:action="@{/twitter/tweet}" th:object="${tweet}" method="post">
-        <label>Tweet:</label>
-        <input type="text" th:field="*{text}" />
-        <br/>
-        <input type="submit" value="Post tweet" />
-    </form>
-    <input type="button" value="Return" onclick="location.href='/twitter/'"/>
+    <div class="navbar">
+        <h1>Twitter Operations</h1>
+    </div>
+    <div class="jumbotron">
+        <form action="#" th:action="@{/twitter/tweet}" th:object="${tweet}" method="post">
+            <h3>Post a tweet</h3>
+            <div class="form-group">
+                <label for="tweetpost">Tweet</label>
+                <input type="text" th:field="*{text}" class="form-control" id="tweetpost" placeholder="Enter tweet text">
+            </div>
+            <span>
+                <button type="submit" class="btn btn-primary">Post tweet</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/twitter/'">Return</button>
+            </span>
+        </form>
+    </div>
+    <div class="footer">
+        <p>Gergely Flórián Papp, 2018.</p>
+    </div>
 </body>
 </html>

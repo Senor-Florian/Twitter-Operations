@@ -28,11 +28,6 @@ public class TwitterTests {
     private Pattern pattern2 = Pattern.compile(regex2);
 
     @Test
-    public void tweetExistsTest() {
-        assertTrue("Tweet file doesn't exist.", new File(ClassLoader.getSystemClassLoader().getResource("tweet").getPath()).exists());
-    }
-
-    @Test
     public void listExistsTest() {
         assertTrue("Spam list doesn't exist.", new File("sex.txt").exists());
     }

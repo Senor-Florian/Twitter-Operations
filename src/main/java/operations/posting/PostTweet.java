@@ -20,30 +20,6 @@ public class PostTweet {
         this.twitter = twitterFactory.getInstance();
     }
 
-    /*
-    public StringBuilder createTweet(){
-        StringBuilder tweet = new StringBuilder();
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(ClassLoader.getSystemClassLoader().getResource(tweetPath).getPath()));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                tweet.append(line).append("\n");
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return tweet;
-    }
-    */
     public void post(String tweetBody) {
         try {
             twitter.updateStatus(tweetBody);
