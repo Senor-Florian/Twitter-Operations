@@ -4,5 +4,6 @@ A Java program implementing the Twitter API. It has the following features:
 * To get the desired parts of a user's timeline.
 * Getting tweets that contain a desired expression.
 * Streaming tweets and optionally filtering them.
+* You can upload the pictures taken from the Twitter Stream to Google Drive.
 * Has a built in spam filter.
 * Makes it possible to store tweets in a database.

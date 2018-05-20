@@ -1,15 +1,6 @@
 package operations.get_tweets;
 
-import operations.misc.DownloadPics;
-import operations.misc.GoogleDrive;
-import operations.misc.ParseList;
-import operations.misc.TweetsToDB;
 import twitter4j.*;
-import java.io.File;
-import java.net.URL;
-import org.apache.commons.io.FileUtils;
-
-import java.util.ArrayList;
 
 public class GetStream {
 
@@ -27,23 +18,15 @@ public class GetStream {
             tweetFilterQuery.language(language);
             twitterStream.filter(tweetFilterQuery);
             while(true){
-                if (!(System.currentTimeMillis() < startTime + streamLength * 20000)) break;
+                if (!(System.currentTimeMillis() < startTime + streamLength * 60000)) break;
             }
-            /*
-            while(true) {
-                if (!(statusListener.getTweetNumber() < 667)) break;
-            }*/
             twitterStream.removeListener(statusListener);
             twitterStream.shutdown();
         } else {
             twitterStream.sample(language);
             while(true){
-                if (!(System.currentTimeMillis() < startTime + streamLength * 20000)) break;
+                if (!(System.currentTimeMillis() < startTime + streamLength * 60000)) break;
             }
-            /*
-            while(true) {
-                if (!(statusListener.getTweetNumber() < 667)) break;
-            }*/
             twitterStream.removeListener(statusListener);
             twitterStream.shutdown();
         }
