@@ -17,3 +17,5 @@ Note: for the program to work the user must provide their own Twitter and Google
 <p align="center"><img src="src/main/resources/screenshots/screen2.png" /></p>
 <p align="center">Fig. 3: Search fragment displayed in console</p>
 <p align="center"><img src="src/main/resources/screenshots/screen3.png" /></p>
+<br/>
+Gergely Flórián Papp, 2018.
