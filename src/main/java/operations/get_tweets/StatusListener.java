@@ -71,8 +71,4 @@ class StatusListener implements twitter4j.StatusListener {
     public void onException(Exception ex) {
         ex.printStackTrace();
     }
-
-    public int getTweetNumber() {
-        return tweetNumber;
-    }
 }

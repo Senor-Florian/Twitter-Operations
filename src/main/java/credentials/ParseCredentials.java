@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 public class ParseCredentials {
 
     public Credentials read() {
-        ClassLoader classLoader = getClass().getClassLoader();
         byte[] db = new byte[0];
         try {
             db = Files.readAllBytes(Paths.get("credentials.json"));

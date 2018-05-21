@@ -18,14 +18,14 @@ public class GetStream {
             tweetFilterQuery.language(language);
             twitterStream.filter(tweetFilterQuery);
             while(true){
-                if (!(System.currentTimeMillis() < startTime + streamLength * 60000)) break;
+                if (!(System.currentTimeMillis() < startTime + streamLength * 1000)) break;
             }
             twitterStream.removeListener(statusListener);
             twitterStream.shutdown();
         } else {
             twitterStream.sample(language);
             while(true){
-                if (!(System.currentTimeMillis() < startTime + streamLength * 60000)) break;
+                if (!(System.currentTimeMillis() < startTime + streamLength * 1000)) break;
             }
             twitterStream.removeListener(statusListener);
             twitterStream.shutdown();
